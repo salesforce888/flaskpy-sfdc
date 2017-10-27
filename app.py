@@ -1,12 +1,13 @@
 import os
 import psycopg2
 from flask import Flask, render_template
-import urlparse
+import urlparse2
+from urlparse2 import urlparse
 import logging
 from logging.handlers import RotatingFileHandler
 from flask import request
 
-url = urlparse.urlparse(os.environ.get('DATABASE_URL'))
+url = urlparse2.urlparse('postgres://yfwcurvrjxgryx:d65b80beb27867111ac4a47b504141dcf3d65a83287a1153a368165f104ac8bf@ec2-54-225-112-61.compute-1.amazonaws.com:5432/dba4fjeqdfjcs0')
 db = "dbname=%s user=%s password=%s host=%s " % (url.path[1:], url.username, url.password, url.hostname)
 schema = "schema.sql"
 conn = psycopg2.connect(db)
